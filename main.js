@@ -122,14 +122,6 @@ function appendEltoEndorsmentsContainer(item){
         deleteEndorsement(id)
        })
    
-      /* div.addEventListener("swiped-left" , (e) => {
-        console.log(e.detail)
-        div.classList.add("swipeLeft")
-        document.querySelector(".indivdual_endors > *").classList.add("hideChildren")
-       setTimeout(function(){
-        deleteEndorsement(id)
-       }, 800)
-      })   */
  
 }
 
