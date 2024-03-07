@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Josefin+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="container">
+      <img class="freddie" src="/Freddie.png" alt="freddie mercury icon" />
+      <h1>We are the Champions</h1>
+      <textarea
+        name="writeEndorsement"
+        id="writeEndorsement"
+        placeholder="Write your endorsement here"
+      ></textarea>
+      <div class="inputsContainer">
+        <input type="text" placeholder="From" id="fromInput" />
+        <input type="text" placeholder="To" id="toInput" />
+      </div>
+      <button id="publishBTN" class="publish">Publish</button>
+
+      <h2>- Endorsements -</h2>
+      <section id="enforsementsContainer"></section>
+    </div>
+    <script type="module" src="/main.js"></script>
+    <script src="./swiped-events/src/swiped-events.js"></script>
+  </body>
+</html>

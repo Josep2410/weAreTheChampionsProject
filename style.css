@@ -1,0 +1,210 @@
+/* 
+  Universal CSS
+*/
+
+html , body{
+  user-select: none;
+  font-size: 16.25px;
+}
+body{
+  color : white;
+  background-color: #04131C;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+p , h4{
+  margin : 0;
+}
+
+/* 
+  Starting here CSS follows html elements chronologically
+*/
+
+.container{
+  margin : 10px auto;
+ 
+  max-width: 320px;
+  display : flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 8px;
+  padding : 25px;
+}
+
+img.freddie{
+  width : 90px;
+  height : 90px;
+  margin : 15px auto 0;
+}
+
+h1 , h2 , button{
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h1{
+  font-size: 1.45em;
+}
+
+textarea , .indivdual_endors  {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
+}
+
+textarea , input[type="text"]{
+  border-radius: 10px;
+  background-color: #444059 ;
+  padding : 10px 10px;
+  color : rgb(205, 204, 204);
+  font-size: .90rem;
+}
+
+textarea{
+  height : 118px;
+}
+
+.inputsContainer{
+  margin-top: 10px;
+  display : flex;
+  justify-content: space-between;
+}
+
+input[type="text"]{
+ width: 48%;
+ text-align: center;
+}
+
+textarea::placeholder , input[type="text"]::placeholder{
+  color : #8F8F8F;
+}
+
+textarea:disabled, input[type="text"]:disabled {
+  background-color: #302d3e ;
+  color : rgb(142, 142, 142);
+  cursor: not-allowed;
+}
+
+button{
+  padding : 15px;
+  border-radius: 8px;
+  font-size: 1.3em;
+  margin-top : 10px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+button:disabled{
+  cursor: not-allowed;
+}
+
+.publish{
+  color : #04131C;
+  background-color: #28A9F1 ;
+}
+
+.invalidText{
+  color : #06151e;
+  background-color: rgb(130, 0, 0) ;
+}
+
+h2{
+  font-size: 1.26em;
+}
+
+#enforsementsContainer{
+  min-height: 150px;
+  color : white;
+}
+
+/* 
+  ================ Starting here dynamically created by Javascript ============
+*/
+
+
+/* 
+ CSS for function appendEltoEndorsmentsContainer(item){} in Main.js 
+*/
+.indivdual_endors{
+  background-color: white;
+  padding :  10px;
+  color : black;
+  font-size: .85rem;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+  transition : 1.2s;
+}
+
+.swipeLeft{
+  width: 0%;
+  opacity: 0;
+ 
+}
+
+.hideChildren{
+  visibility: hidden;
+}
+
+.indivdual_endors:hover{
+  cursor: pointer;
+} 
+
+.indivdual_endors p{
+  padding : 1px 5px;
+}
+
+.indivdual_endors .spaceBetween {
+  display : flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.indivdual_endors span{
+  font-size: .7rem;
+  display : flex;
+  align-items: center;
+  }
+
+.indivdual_endors h4{
+  padding : 5px 0;
+}
+
+.indivdual_endors .heartSVG{
+  height : 15px;
+  width : 15px;
+  margin-right : 8px;
+}
+
+.hide{
+  color : white;
+}
+
+/* 
+  CSS for p element in onValue function in Main.js
+*/
+
+.emptyContainer{
+  color : rgb(198, 198, 198);
+  content : "currently empty";
+  margin : 50px auto;
+  font-size: .80rem;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style:italic;
+  font-variation-settings:
+    "slnt" 0;
+}
+
