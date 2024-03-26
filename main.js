@@ -1,7 +1,9 @@
+// import functions to use and setup firebase DB
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
 import {getDatabase , ref , push , onValue, remove, update} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 import {format} from 'date-fns'
 
+// setting up Firebase DB
 const appSettings = {
   databaseURL : "https://we-are-the-champions-66acd-default-rtdb.firebaseio.com/"
 }
@@ -10,22 +12,26 @@ const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const endorsementsInDB = ref(database , "endorsements")
 
+//End Firebase setup
+
+// Initialize consts from HTML 
 const textAreaEl = document.getElementById("writeEndorsement")
 const btn = document.getElementById("publishBTN")
-const enfsContainer = document.getElementById("enforsementsContainer")
+const endsContainer = document.getElementById("endorsementsContainer")
 const fromInput = document.getElementById("fromInput")
 const toInput = document.getElementById("toInput")
-const windowWidth = window.innerWidth
 
-
+// when Publish btn is pressed, determine if there are any input fields or not and handle accordingly
 btn.addEventListener("click" , (e) =>{
   const text = textAreaEl.value
   if(!text) disableElment(textAreaEl, 'textarea')
   else if(!fromInput.value) disableElment(fromInput, 'from')
   else if(!toInput.value) disableElment(toInput, 'to')
   else{
-    //push(endorsementsInDB , value)
+
     const date = format(new Date() , "MM/dd/yy")
+
+    //will cause onValue() to run since push() will cause a change in DB 
     push(endorsementsInDB , 
       { 
         text , 
@@ -35,19 +41,17 @@ btn.addEventListener("click" , (e) =>{
         likes : 0 ,
         canLike : true
       })
+      
+    clearElementsValue(textAreaEl)
+    clearElementsValue(fromInput)
+    clearElementsValue(toInput)
     
   }
-
-  clearElementsValue(textAreaEl)
-  clearElementsValue(fromInput)
-  clearElementsValue(toInput)
-
-  //appendEltoEndorsmentsContainer(value)
   
 })
 
 
-// depending on element and text, disable element
+// disable and highlight element that requires attention
 function disableElment(element , str){
   element.disabled = true
   btn.disabled = true
@@ -75,7 +79,7 @@ function disableElment(element , str){
   }, 2000)
 }
 
-// anytime db changes, this function runs
+// anytime db changes (an endorsement is published, updated or deleted), this function runs
 onValue(endorsementsInDB , function(snapshot){
   clearEndorsementsContainer()
   if(snapshot.exists()){
@@ -86,18 +90,19 @@ onValue(endorsementsInDB , function(snapshot){
     }
   }
   else{
-    enfsContainer.innerHTML = `<p class="emptyContainer">Empty</p>`
+    endsContainer.innerHTML = `<p class="emptyContainer">Empty</p>`
   }
 })
 
 function clearEndorsementsContainer(){
-  enfsContainer.innerHTML = ''
+  endsContainer.innerHTML = ''
 }
 
 function clearElementsValue(elem){
   elem.value = ""
 }
 
+//publish written endorsement to DOM
 function appendEltoEndorsmentsContainer(item){
 
     const id = item[0]
@@ -109,9 +114,9 @@ function appendEltoEndorsmentsContainer(item){
     div.innerHTML = renderDivContent(text, to, from , date , likes )
   
     div.setAttribute("class" , "indivdual_endors")
-    enfsContainer.prepend(div)
+    endsContainer.prepend(div)
 
-    // likesContainer rendered by renderDivContent function
+    // likesContainer instance rendered from renderDivContent function
     const likesContainer = document.getElementById("likesContainer")
   
     likesContainer.addEventListener("click" , () => {
@@ -127,7 +132,8 @@ function appendEltoEndorsmentsContainer(item){
 
 function deleteEndorsement(id){
   let locationInDB = ref(database , `endorsements/${id}`) 
-  remove(locationInDB)
+  remove(locationInDB) 
+  // remove() will cause 'onValue' function to run since a change is being made to DB
 }
 
 function renderDivContent(text, to, from , date , likes ){
@@ -148,6 +154,7 @@ function renderDivContent(text, to, from , date , likes ){
 
 function updateLikes(bool , likes , id){
   let locationInDB = ref(database , `endorsements/${id}`) 
+
   if(bool) update(locationInDB , {likes : likes + 1 , canLike : false})
   else update(locationInDB , {likes : likes - 1 <= 0 ? 0 : likes - 1 , canLike : true})
 }
